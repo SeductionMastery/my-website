@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        input[type="email"] {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #ff5733;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            max-width: 120px;
+        }
+
+        button:hover {
+            background-color: #e14e2b;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .success {
+            color: green;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Where to meet Women</h1>
+        <p>Send the course sent to your email and find amazing women today</p>
+
+        <!-- Email Input Form -->
+        <form id="emailForm">
+            <input type="email" id="emailInput" placeholder="Enter your email" required>
+            <div class="error" id="error-message"></div>
+            <button type="submit">Send me</button>
+        </form>
+
+        <div id="success-message" class="success"></div>
+    </div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+
+            const emailInput = document.getElementById('emailInput').value;
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            // Simple Email Validation (checks if it contains @ and .)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(emailInput)) {
+                errorMessage.textContent = 'Please enter a valid email address.';
+                successMessage.textContent = ''; // Clear any previous success message
+            } else {
+                errorMessage.textContent = ''; // Clear the error message
+                successMessage.textContent = 'Thank you for signing up!';
+
+                // Store email somewhere (currently just logs to console)
+                console.log('Submitted email:', emailInput);
+
+                // You can later connect this part to a backend server or storage API to store the email.
+            }
+        });
+    </script>
+</body>
+</html>
