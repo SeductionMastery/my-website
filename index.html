@@ -134,7 +134,15 @@
                 fbq('track', 'Lead'); // 'Lead' is an example event, you can name it according to your goals
 
                 // You can later connect this part to a backend server or storage API to store the email.
+
+		downloadPDF();
             }
+		 function downloadPDF() {
+    const link = document.createElement('a');
+    link.href = 'your-file.pdf'; // Path to your PDF file
+    link.download = 'your-file.pdf'; // File name for download
+    link.click();
+  }
         });
 
     </script>
